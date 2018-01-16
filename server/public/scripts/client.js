@@ -4,7 +4,8 @@ function readySetGo() {
     console.log('readySetGo working');
     // Get pets on load
     getPets();
-  
+    $('.pet-list').on('click', '.edit-pet', editPets);
+    $('.pet-list').on('click', '.cancelButton', getPets);
     // Event Listeners
 
 } // End readySetGo function
@@ -26,9 +27,9 @@ function displayPets(pets) {
         let $row = $(`<tr data-id="${pet.id}">`);
         $row.append(`
         <td>${pet.first_name} ${pet.last_name}</td>
-        <td>${pet.name}</td>
-        <td>${pet.breed}</td>
-        <td>${pet.color}</td>
+        <td id="" class="petName">${pet.name}</td>
+        <td class="petBreed">${pet.breed}</td>
+        <td class ="petColor">${pet.color}</td>
         <td><button class="edit-pet">Edit</button></td>
         <td><button class="delete-pet">Delete</button></td>
         <td><button class="check-in-out">Check In/Out</button></td>
@@ -48,13 +49,21 @@ function deletePets() {
 } // End deletePets
 
 function editPets() {
-
-    $.ajax({
-        method: 'PUT',
-        url: '/pets/${}',
-        data: ,
-        success: function(){
-            getPets();
-        }
-    });
+    let pet = $(this).closest('tr').data('id');
+    
+    $(this).parents().siblings('.petName').html(`<input type="text" value="hello">`);
+    $(this).replaceWith(`
+        <button class="confirmButton">Confirm</button>
+        <button class ="cancelButton">Cancel</button>`);
+        console.log($(this));
+        
+    
+    // $.ajax({
+    //     method: 'PUT',
+    //     url: '/pets/' + pet,
+    //     data: ,
+    //     success: function(){
+    //         getPets();
+    //     }
+    // });
 }

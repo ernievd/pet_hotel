@@ -7,9 +7,9 @@ function readySetGo() {
   
     // Event Listeners
     $('#addNewOwnerBtn').on('click', registerNewOwner);
+    $('#addNewPetBtn').on('click', registerNewPet);
     $('table').on('click', '.deleteButton', deletePets);
     $('table').on('click', '.check-in-out', checkInOut);
-
 } // End readySetGo function
 
 
@@ -79,8 +79,30 @@ function registerNewOwner() {
             alert('Fill out all input fields.');
         }
     });
-
 } // End registerNewOwner
+
+function registerNewPet() {
+    console.log("In registerNewPet");
+
+    let newPet = {
+        name: $('#petNameInput').val(),
+        breed: $('#petBreedInput').val(),
+        color: $('#petColorInput').val()
+    };
+    $.ajax({
+        method: 'POST',
+        url: '/pets/newPet',
+        data: newPet,
+        success: function(response) {
+            console.log('response:', response)
+            $('#tableBody').empty();
+        },
+        error: function(response) {
+            alert('Fill out all input fields.');
+        }
+    });
+} // End registerNewPet
+
 function checkInOut() {
     let id = $(this).parents('tr').data('id');
     let boolean = $(this).parents('tr').data('is_checked_in');

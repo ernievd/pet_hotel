@@ -3,27 +3,27 @@
 BEGIN;
 CREATE TABLE owner(
 id SERIAL PRIMARY KEY,
-first_name VARCHAR(150),
-last_name VARCHAR(150)
+first_name VARCHAR(150) NOT NULL,
+last_name VARCHAR(150) NOT NULL
 );
+
+CREATE TABLE visit(
+id SERIAL PRIMARY KEY,
+check_in_date DATE NOT NULL,
+check_out_date DATE NOT NULL);
 
 CREATE TABLE pet(
 id SERIAL PRIMARY KEY,
 name VARCHAR(150) NOT NULL,
 breed VARCHAR(150) NOT NULL,
 color VARCHAR(100) NOT NULL,
-is_checked_in BOOLEAN NOT NULL,
+is_checked_in BOOLEAN SET DEFAULT 'FALSE',
 visit_id INT REFERENCES visit);
 
 CREATE TABLE owner_pet(
 id SERIAL PRIMARY KEY,
 owner_id INT REFERENCES owner,
 pet_id INT REFERENCES pet); 
-
-CREATE TABLE visit(
-id SERIAL PRIMARY KEY,
-check_in_date DATE NOT NULL,
-check_out_date DATE NOT NULL);
 
 
 INSERT INTO owner(first_name, last_name)

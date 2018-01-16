@@ -20,7 +20,9 @@ function updatePets() {
 } // End updatePets
 
 function deletePets() {
-    let id = $(this).parent().data('id');
+    let id = $(this).parents('tr').data('id');
+    console.log(id);
+    
     $.ajax({
         method: 'DELETE',
         url: `/pets/${id}`,

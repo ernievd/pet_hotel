@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="vendors/jquery.min.js"></script>
+    <script src="scripts/client.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet">
+    <link rel="stylesheet" href="styles/main.css">
+    <title>Koala Holla - Save all the Koalas</title>
+</head>
+<body class="container">
+    <header>
+        <img class="logo" src="images/koalacon.png" alt="Koala Holla - Save all the Koalas">
+        <h1>Koala Holla</h1>
+        <a class="address" target="_blank" href="https://www.google.com/maps/search/?api=1&amp;query=Walla+Walla+WA">
+            <p>1976 Llama Comma Dr</p>
+            <p>Walla Walla, WA</p>
+        </a>
+    </header>
+    
+    <input type="text" placeholder="Name" id="koalaName" />
+    <input type="text" placeholder="Gender" id="koalaGender" />
+    <input type="text" placeholder="Age" id="koalaAge" />
+    <p>Ready to Transfer?</p>
+    <select id="readyToTransfer">
+        <option value="Y">Yes</option>
+        <option value="N">No</option>
+    </select>
+    <textarea id="koalaNotes" cols="30" rows="10" placeholder="Notes"></textarea>
+    <button id="addKoala" class="btn btn-info">Add Koala</button>
+    <ul id="taskList"></ul>
+</body>
+</html>

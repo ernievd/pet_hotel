@@ -2,7 +2,8 @@ $(document).ready(readySetGo);
 
 function readySetGo() {
     console.log('readySetGo working');
-    // Display pets onload
+    // Get pets on load
+    getPets();
   
     // Event Listeners
 
@@ -10,6 +11,13 @@ function readySetGo() {
 
 
 function getPets() {
+    $.ajax({
+        method: 'GET',
+        url: '/pets',
+        success: function(response){
+            console.log('success!:', response);
+        } //end success
+    }); //end ajax get
 } // End getPets
 
 function addPets() {

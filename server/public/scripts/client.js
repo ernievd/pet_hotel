@@ -22,5 +22,13 @@ function deletePets() {
 } // End deletePets
 
 function editPets() {
-    
+
+    $.ajax({
+        method: 'PUT',
+        url: '/pets/${}',
+        data: ,
+        success: function(){
+            getPets();
+        }
+    });
 }

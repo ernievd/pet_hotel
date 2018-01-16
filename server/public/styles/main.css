@@ -1,0 +1,17 @@
+html, body {
+    background-color: #E0E0E0;
+    font-family: sans-serif;
+    color: #262626;
+}
+
+header {
+    text-align: center;
+}
+
+table {
+    margin: 0 auto;
+}
+
+th, td {
+    padding: 20px;
+}

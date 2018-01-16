@@ -19,8 +19,7 @@ function getPets() {
 } // End getPets
 
 function displayPets(pets) {
-    console.log('pets: ', pets);
-    
+    $('.pet-list').empty();    
     for (let i = 0; i < pets.length; i++) {
         let pet = pets[i]
         let $row = $(`<tr data-id="${pet.id}">`);

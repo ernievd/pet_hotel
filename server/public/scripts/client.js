@@ -6,7 +6,7 @@ function readySetGo() {
     getPets();
   
     // Event Listeners
-    $('.deleteButton').on('click', deletePets);
+    $('table').on('click', '.deleteButton', deletePets);
 
 } // End readySetGo function
 
@@ -31,7 +31,7 @@ function displayPets(pets) {
         <td>${pet.breed}</td>
         <td>${pet.color}</td>
         <td><button class="edit-pet">Edit</button></td>
-        <td><button class="delete-pet">Delete</button></td>
+        <td><button class="deleteButton">Delete</button></td>
         <td><button class="check-in-out">Check In/Out</button></td>
         `);
         $('.pet-list').append($row);
@@ -46,7 +46,9 @@ function updatePets() {
 } // End updatePets
 
 function deletePets() {
-    let id = $(this).parent().data('id');
+    let id = $(this).parents('tr').data('id');
+    console.log(id);
+    
     $.ajax({
         method: 'DELETE',
         url: `/pets/${id}`,

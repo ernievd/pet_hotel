@@ -22,10 +22,10 @@ router.get('/', (req, res) => {
 
 router.delete('/:id', (req, res)=>{
     let queryText = `
-    DELETE FROM pet
+    DELETE FROM owner_pet
     WHERE id = $1`;
     pool.query(queryText, [req.params.id])
-        .then((resulst)=>{
+        .then((result)=>{
             res.sendStatus(200);
         })
         .catch((err)=>{

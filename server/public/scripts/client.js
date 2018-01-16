@@ -31,10 +31,10 @@ function displayPets(pets) {
         <td>${pet.name}</td>
         <td>${pet.breed}</td>
         <td>${pet.color}</td>
-        <td class="checkedInOrOut">${pet.is_checked_in}</td>
+        <td class="checkedInOrOut">${checkPetStatus(pet.is_checked_in)}</td>
         <td><button class="edit-pet">Edit</button></td>
         <td><button class="deleteButton">Delete</button></td>
-        <td><button class="check-in-out">Check In/Out</button></td>
+        <td><button class="check-in-out">${buttonCheckIn(pet.is_checked_in)}</button></td>
         `);
         $('.pet-list').append($row);
         $row.data(pet);
@@ -50,7 +50,6 @@ function updatePets() {
 
 function deletePets() {
     let id = $(this).parents('tr').data('id');
-    console.log(id);
     $.ajax({
         method: 'DELETE',
         url: `/pets/${id}`,
@@ -63,8 +62,6 @@ function editPets() {
 }
 
 function registerNewOwner() {
-    console.log("In registerNewOwner");
-
     let newOwner = {
         firstName: $('#OwnerFirstNameInput').val(),
         lastName: $('#OwnerLastNameInput').val(),
@@ -92,10 +89,25 @@ function checkInOut() {
     } else if (boolean == true){
         boolean = false;
     }
-    console.log('id, ', id, 'boolean, ', boolean);
     $.ajax({
         method:'PUT',
         url: `/pets/${id}/${boolean}`,
         success: getPets
     })
+}
+    //converts true or false boolean to useful string
+function checkPetStatus(status) {
+    if (status == true) {
+        return 'Checked In';
+    } else if (status == false){
+        return 'Checked Out';
+    }
+}
+    //converts button text depending on status
+function buttonCheckIn(status) {
+    if (status == true) {
+        return 'Check Out';
+    } else if (status == false){
+        return 'Check In';
+    }
 }

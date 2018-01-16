@@ -4,7 +4,8 @@ function readySetGo() {
     console.log('readySetGo working');
     // Get pets on load
     getPets();
-  
+    $('.pet-list').on('click', '.edit-pet', editPets);
+    $('.pet-list').on('click', '.cancelButton', getPets);
     // Event Listeners
     $('#addNewOwnerBtn').on('click', registerNewOwner);
     $('#addNewPetBtn').on('click', registerNewPet);
@@ -28,9 +29,9 @@ function displayPets(pets) {
         let $row = $(`<tr>`);
         $row.append(`
         <td>${pet.first_name} ${pet.last_name}</td>
-        <td>${pet.name}</td>
-        <td>${pet.breed}</td>
-        <td>${pet.color}</td>
+        <td class="petName">${pet.name}</td>
+        <td class="petBreed">${pet.breed}</td>
+        <td class ="petColor">${pet.color}</td>
         <td class="checkedInOrOut">${checkPetStatus(pet.is_checked_in)}</td>
         <td><button class="edit-pet">Edit</button></td>
         <td><button class="deleteButton">Delete</button></td>
@@ -58,7 +59,25 @@ function deletePets() {
 } // End deletePets
 
 function editPets() {
+    let pet = $(this).closest('tr').data('id');
     
+    $(this).parents().siblings('.petName').html(`<input type="text" value="hello">`);
+    $(this).parents().siblings('.petBreed').html(`<input type="text" value="hello">`);
+    $(this).parents().siblings('.petColor').html(`<input type="text" value="hello">`);
+    $(this).replaceWith(`
+        <button class="confirmButton">Confirm</button>
+        <button class ="cancelButton">Cancel</button>`);
+        console.log($(this));
+        
+    
+    // $.ajax({
+    //     method: 'PUT',
+    //     url: '/pets/' + pet,
+    //     data: ,
+    //     success: function(){
+    //         getPets();
+    //     }
+    // });
 }
 
 function registerNewOwner() {

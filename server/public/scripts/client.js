@@ -103,6 +103,7 @@ function confirmEdit(){
             color: color
         },
         success: function(){
+
             getPets();
         }
     });
@@ -115,9 +116,11 @@ function getOwners() {
         url: '/pets/owners',
         success: function(response) {
             console.log('response from getTask', response);
+            $('#petOwnerDropDown').empty();
+            $('#petOwnerDropDown').append(`<option>Choose pets owner</option>`);
             for (let i = 0; i < response.length; i++) {
                 const ownerResponse = response[i];
-                $('#petOwnerDropDown').append(`<option class="ownerList" data-id="${ownerResponse.id}">${ownerResponse.first_name} ${ownerResponse.last_name}</option>`);
+                $('#petOwnerDropDown').append(`<option class="ownerList" value="${ownerResponse.id}">${ownerResponse.first_name} ${ownerResponse.last_name}</option>`);
             }
         }
     }); //end ajax get
@@ -138,6 +141,7 @@ function registerNewOwner() {
             console.log('response:', response);
             //Clear input fields
             $('.register-owner input[type="text"]').val('');
+            getOwners();
         },
         error: function(response) {
             alert('Fill out all input fields.');
@@ -148,13 +152,13 @@ function registerNewOwner() {
 function registerNewPet() {
     console.log("In registerNewPet");
  ///////***********************
- 
-    const ownerId = $(this).closest('.ownerList').data('id');
+    const ownerId = $(this).siblings('select').val();
 
     let newPet = {
         name: $('#petNameInput').val(),
         breed: $('#petBreedInput').val(),
-        color: $('#petColorInput').val()
+        color: $('#petColorInput').val(),
+        ownerId: ownerId
     };
     $.ajax({
         method: 'POST',
@@ -162,8 +166,10 @@ function registerNewPet() {
         data: newPet,
         success: function(response) {
             console.log('response:', response);
+
             //Clear input fields
             $('.register-pet input[type="text"]').val('');
+            getOwners();
         },
         error: function(response) {
             alert('Fill out all input fields.');

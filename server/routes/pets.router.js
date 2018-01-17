@@ -87,11 +87,16 @@ router.delete('/:id', (req, res)=>{
     WHERE pet_id = $1`;
     pool.query(queryText, [req.params.id])
         .then((result)=>{
-            const queryTwo = 'DELETE FROM pet WHERE id = $1';
+            const queryTwo = 'DELETE FROM visit WHERE pet_id = $1';
             pool.query(queryTwo, [req.params.id])
                 .then((result) => {
+                    const queryTwo = 'DELETE FROM pet WHERE id = $1';
+                    pool.query(queryTwo, [req.params.id])
+                        .then((result) => {
+                            res.sendStatus(200);
+                     })
                     res.sendStatus(200);
-                })
+            })
         })
         .catch((err)=>{
             console.log('Error deleting pet: ', 500);

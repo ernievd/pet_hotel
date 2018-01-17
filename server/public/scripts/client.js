@@ -5,7 +5,7 @@ function readySetGo() {
     // Get pets on load
     getPets();
     // Event Listeners
-
+    formListeners();
     $('.pet-list').on('click', '.edit-pet', editPets);
     $('.pet-list').on('click', '.cancelButton', getPets);
     $('#addNewOwnerBtn').on('click', registerNewOwner);
@@ -13,11 +13,23 @@ function readySetGo() {
     $('table').on('click', '.deleteButton', deletePets);
     $('table').on('click', '.check-in-out', checkInOut);
     $('.pet-list').on('click', '.confirmButton', confirmEdit);
-    
-
-
 } // End readySetGo function
 
+function formListeners(){
+    $('.register').hide();
+    $('#showRegisterOwner').on('click', function(){
+        $('.register-owner').show();
+    });
+    $('#exitRegisterOwner').on('click', function(){
+        $('.register-owner').hide();
+    });
+    $('#showRegisterPet').on('click', function(){
+        $('.register-pet').show();
+    });
+    $('#exitRegisterPet').on('click', function(){
+        $('.register-pet').hide();
+    });
+}
 
 function getPets() {
     $.ajax({
@@ -37,10 +49,10 @@ function displayPets(pets) {
         <td class="petName">${pet.name}</td>
         <td class="petBreed">${pet.breed}</td>
         <td class ="petColor">${pet.color}</td>
+        <td class="btn-td"><button class="edit-pet"><i class="fas fa-edit"></i></button></td>
         <td class="checkedInOrOut">${checkPetStatus(pet.is_checked_in)}</td>
-        <td><button class="edit-pet">Edit</button></td>
-        <td><button class="deleteButton">Delete</button></td>
-        <td><button class="check-in-out">${buttonCheckIn(pet.is_checked_in)}</button></td>
+        <td class="btn-td"><button class="check-in-out">${buttonCheckIn(pet.is_checked_in)}</button></td>
+        <td class="btn-td"><button class="deleteButton"><i class="far fa-trash-alt"></i></button></td>
         `);
         $('.pet-list').append($row);
         $row.data(pet);

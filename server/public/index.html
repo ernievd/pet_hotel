@@ -4,30 +4,43 @@
     <meta charset="UTF-8">
     <script src="vendors/jquery.min.js"></script>
     <script src="scripts/client.js"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.4/js/all.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Macondo" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins|Raleway" rel="stylesheet">
     <link rel="stylesheet" href="styles/main.css">
     <title>Pet Hotel</title>
 </head>
 <body class="container">
-    <header>
-        <h1>Pet Hotel</h1>
+    <header> 
+        <h1>Grand Budapet Hotel</h1>
+        <div>
+            <button id="showRegisterOwner">Register Owner</button>
+            <button id="showRegisterPet">Register Pet</button>
+        </div>
     </header>
     <div class="main-container">
-        <div class="register-owner">
+        <div class="register register-owner">
+            <h2>Register an Owner</h2>
             <input type="text" placeholder="First Name" id="OwnerFirstNameInput" />
             <input type="text" placeholder="Last Name" id="OwnerLastNameInput" />
-            <button id="addNewOwnerBtn" class="btn">Register New Owner</button>
-
+            <div>
+                <button id="addNewOwnerBtn" class="btn">Register New Owner</button>
+                <button id="exitRegisterOwner">Exit</button>
+            </div>
         </div>
-        <div class="register-pet">
-            <input type="text" placeholder="Pet Name" id="petNameInput" />
-            <input type="text" placeholder="Pet Breed" id="petBreedInput" />
-            <input type="text" placeholder="Pet Color" id="petColorInput" />
+        <div class="register register-pet">
+            <h2>Register a Pet</h2>
             <select id="petOwnerDropDown" placeholder="Choose pets owner">
                 <option placeholder="Choose pets owner"></option>
             </select>
-
-            <button id="addNewPetBtn" class="btn">Register New Pet</button>
-
+            <input type="text" placeholder="Pet Name" id="petNameInput" />
+            <input type="text" placeholder="Pet Breed" id="petBreedInput" />
+            <input type="text" placeholder="Pet Color" id="petColorInput" />
+            
+            <div>
+                <button id="addNewPetBtn" class="btn">Register New Pet</button>
+                <button id="exitRegisterPet">Exit</button>
+            </div>
 
         </div>
         <div class="pet-table">
@@ -38,10 +51,10 @@
                         <th>Pet</th>
                         <th>Breed</th>
                         <th>Color</th>
+                        <th></th>
                         <th>Status</th>
-                        <th>Update</th>
-                        <th>Delete</th>
-                        <th>Check In/Out</th>
+                        <th></th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody class="pet-list">

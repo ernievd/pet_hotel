@@ -1,17 +1,122 @@
 html, body {
-    background-color: #E0E0E0;
+    margin: 0;
+    background-color: #aae2f0;
     font-family: sans-serif;
-    color: #262626;
+    font-family: 'Poppins', sans-serif;
+}
+
+.main-container {
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
 }
 
 header {
-    text-align: center;
+    margin: 0;
+    padding: 10px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #618795;
+    color: rgb(238, 238, 238);
+    border-bottom: 4px solid #ae594a;
 }
+
+header > div > button {
+    font-size: 14pt;
+    background-color: #618795;
+    color: #e8d272;
+}
+
+header > div > button:hover {
+    color: rgb(238, 238, 238);
+}
+
+
+header > h1 {
+    font-size: 40pt;
+    font-family: 'Macondo', cursive;
+}
+
+.register {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    background-color: #ae594a;
+    color: #e8d272;
+    border: 10px solid #618795;
+    width: 20%;
+    height: 350px;
+    margin: auto;
+    overflow: auto;
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+    position: fixed;
+    z-index: 999;
+    box-shadow: 0px 0px 1px 5000px rgba(88, 88, 88, 0.9);
+}
+
+.register-owner {
+    height: 300px;
+}
+
+.register > input {
+    border: 0;
+    outline: 0;
+    margin: 10px;
+    padding: 10px;
+    width: 50%;
+    font-size: 14pt;
+}
+
+.register > div > button {
+    margin: 10px;
+    padding: 10px;
+    font-size: 14pt;
+    background-color: #ae594a;
+    color: #e8d272;
+}
+
+.register > div > button:hover {
+    color: rgb(238, 238, 238);
+}
+
+
+button {
+    cursor: pointer;
+    border: 0;
+    outline: 0;
+}
+
+thead {
+    background-color: #e8d272;
+    margin: 0;
+}
+
 
 table {
     margin: 0 auto;
+    margin-top: 75px;
+    border: 4px solid #ae594a;
+    background-color: rgb(238, 238, 238);
+    border-collapse: collapse;
+    color: #34677a;
+    font-size: 12pt;
 }
 
 th, td {
-    padding: 20px;
+    padding: 15px;
+    margin: 0;
+}
+
+.btn-td {
+    padding: 5px;
+}
+
+.btn-td > button {
+    background-color: rgb(238, 238, 238);
+    font-size: 12pt;
+    color: #34677a;
 }

@@ -12,13 +12,6 @@ html, body {
     align-items: center;
 }
 
-.register {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 10px;
-}
-
 header {
     margin: 0;
     padding: 10px;
@@ -29,12 +22,6 @@ header {
     background-color: #618795;
     color: rgb(238, 238, 238);
     border-bottom: 4px solid #ae594a;
-}
-
-button {
-    cursor: pointer;
-    border: 0;
-    outline: 0;
 }
 
 header > div > button {
@@ -52,9 +39,62 @@ h1 {
     font-size: 28pt;
 }
 
+.register {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    background-color: #ae594a;
+    color: #e8d272;
+    border: 10px solid #618795;
+    width: 20%;
+    height: 350px;
+    margin: auto;
+    overflow: auto;
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+    position: fixed;
+    z-index: 999;
+    box-shadow: 0px 0px 1px 5000px rgba(88, 88, 88, 0.9);
+}
+
+.register-owner {
+    height: 300px;
+}
+
+.register > input {
+    border: 0; 
+    outline: 0;
+    margin: 10px;
+    padding: 10px;
+    width: 50%;
+    font-size: 14pt;
+}
+
+.register > div > button {
+    margin: 10px;
+    padding: 10px;
+    font-size: 14pt;
+    background-color: #ae594a;
+    color: #e8d272;
+}
+
+.register > div > button:hover {
+    color: rgb(238, 238, 238);
+}
+
+
+button {
+    cursor: pointer;
+    border: 0;
+    outline: 0;
+}
+
+
+
 table {
     margin: 0 auto;
-    margin-top: 30px;
+    margin-top: 75px;
     background-color: rgb(238, 238, 238);
 }
 

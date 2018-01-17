@@ -46,12 +46,16 @@ router.put('/:id', (req, res) => {
 // });// End router.post
 
 router.post('/newPet', function(req, res) {
-    console.log('req.body of /newPet is', req.body);
-    const queryText = 'INSERT INTO pet (name, breed, color) VALUES($1, $2, $3)';
+    const queryText = 'INSERT INTO pet (name, breed, color) VALUES($1, $2, $3) RETURNING id';
     pool.query(queryText, [req.body.name, req.body.breed, req.body.color])
     // runs on successful query
         .then((result) => {
-            //console.log('query results: ', result);
+
+            const queryText2 = 'INSERT INTO owner_pet (owner_id, pet_id) VALUES($1, $2)';
+            pool.query(queryText2, [req.body.ownerId, result.rows[0].id])
+            // runs on successful query
+                .then((result) => {
+                })
             res.sendStatus(201);
         })
         // error handling
@@ -97,7 +101,7 @@ router.delete('/:id', (req, res)=>{
 
 //GET all owners from DB
 router.get('/owners', (req, res) => {
-    const queryText = 'SELECT first_name, last_name FROM owner';
+    const queryText = 'SELECT first_name, last_name, id FROM owner';
     pool.query(queryText)
         .then((result) => {
             res.send(result.rows);

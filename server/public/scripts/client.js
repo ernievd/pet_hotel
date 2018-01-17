@@ -50,9 +50,9 @@ function displayPets(pets) {
         <td class="petBreed">${pet.breed}</td>
         <td class ="petColor">${pet.color}</td>
         <td class="checkedInOrOut">${checkPetStatus(pet.is_checked_in)}</td>
-        <td><button class="edit-pet">Edit</button></td>
-        <td><button class="deleteButton">Delete</button></td>
-        <td><button class="check-in-out">${buttonCheckIn(pet.is_checked_in)}</button></td>
+        <td class="btn-td"><button class="edit-pet">Edit</button></td>
+        <td class="btn-td"><button class="deleteButton"><i class="far fa-trash-alt"></i></button></td>
+        <td class="btn-td"><button class="check-in-out">${buttonCheckIn(pet.is_checked_in)}</button></td>
         `);
         $('.pet-list').append($row);
         $row.data(pet);

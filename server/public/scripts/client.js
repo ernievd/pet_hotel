@@ -80,6 +80,9 @@ function editPets() {
     let name = $(this).parents().siblings('.petName').text();
     let breed = $(this).parents().siblings('.petBreed').text();
     let color = $(this).parents().siblings('.petColor').text();
+    let id = $(this).parents().siblings('.petColor').data();
+    console.log('id ', id);
+    
 
     $(this).parents().siblings('.petName').html(`<input type="text" id="pet-name" value="${name}">`);
     $(this).parents().siblings('.petBreed').html(`<input type="text" id="pet-breed" value="${breed}">`);

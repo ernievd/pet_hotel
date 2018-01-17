@@ -5,6 +5,7 @@ function readySetGo() {
     // Get pets on load
     getPets();
     // Event Listeners
+    formListeners();
     $('.pet-list').on('click', '.edit-pet', editPets);
     $('.pet-list').on('click', '.cancelButton', getPets);
     $('#addNewOwnerBtn').on('click', registerNewOwner);
@@ -14,6 +15,21 @@ function readySetGo() {
     $('.pet-list').on('click', '.confirmButton', confirmEdit);
 } // End readySetGo function
 
+function formListeners(){
+    $('.register').hide();
+    $('#showRegisterOwner').on('click', function(){
+        $('.register-owner').show();
+    });
+    $('#exitRegisterOwner').on('click', function(){
+        $('.register-owner').hide();
+    });
+    $('#showRegisterPet').on('click', function(){
+        $('.register-pet').show();
+    });
+    $('#exitRegisterPet').on('click', function(){
+        $('.register-pet').hide();
+    });
+}
 
 function getPets() {
     $.ajax({
@@ -41,7 +57,8 @@ function displayPets(pets) {
         $('.pet-list').append($row);
         $row.data(pet);
     } //end for loop
-
+    // Need to also get all owner names to help populate the owner dropdown
+    getOwners()
 } //end displayPets
 
 function addPets() {
@@ -91,6 +108,22 @@ function confirmEdit(){
     });
 }
 
+
+function getOwners() {
+    $.ajax({
+        method: 'GET',
+        url: '/pets/owners',
+        success: function(response) {
+            console.log('response from getTask', response);
+            for (let i = 0; i < response.length; i++) {
+                const ownerResponse = response[i];
+                $('#petOwnerDropDown').append(`<option class="ownerList" data-id="${ownerResponse.id}">${ownerResponse.first_name} ${ownerResponse.last_name}</option>`);
+            }
+        }
+    }); //end ajax get
+} // End getPets
+
+
 function registerNewOwner() {
     let newOwner = {
         firstName: $('#OwnerFirstNameInput').val(),
@@ -102,8 +135,9 @@ function registerNewOwner() {
         url: '/pets',
         data: newOwner,
         success: function(response) {
-            console.log('response:', response)
-            $('#tableBody').empty();
+            console.log('response:', response);
+            //Clear input fields
+            $('.register-owner input[type="text"]').val('');
         },
         error: function(response) {
             alert('Fill out all input fields.');
@@ -113,6 +147,8 @@ function registerNewOwner() {
 
 function registerNewPet() {
     console.log("In registerNewPet");
+ ///////***********************
+    const ownerId = $(this).closest('.ownerList').data('id');
 
     let newPet = {
         name: $('#petNameInput').val(),
@@ -124,8 +160,9 @@ function registerNewPet() {
         url: '/pets/newPet',
         data: newPet,
         success: function(response) {
-            console.log('response:', response)
-            $('#tableBody').empty();
+            console.log('response:', response);
+            //Clear input fields
+            $('.register-pet input[type="text"]').val('');
         },
         error: function(response) {
             alert('Fill out all input fields.');
@@ -148,6 +185,7 @@ function checkInOut() {
     })
 }
     //converts true or false boolean to useful string
+
 function checkPetStatus(status) {
     if (status == true) {
         return 'Checked In';

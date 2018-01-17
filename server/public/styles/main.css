@@ -23,16 +23,23 @@ header {
     border-bottom: 4px solid #ae594a;
 }
 
-header > div > button {
+header > div > button, a {
     font-size: 14pt;
     background-color: #618795;
     color: #e8d272;
+}
+
+a {
+    text-decoration: none;
 }
 
 header > div > button:hover {
     color: rgb(238, 238, 238);
 }
 
+a:hover {
+    color: rgb(238, 238, 238);
+}
 
 header > h1 {
     font-size: 40pt;

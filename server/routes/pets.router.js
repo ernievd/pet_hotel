@@ -94,4 +94,16 @@ router.delete('/:id', (req, res)=>{
             res.sendStatus(500);
         })
 })
+
+//GET all owners from DB
+router.get('/owners', (req, res) => {
+    const queryText = 'SELECT first_name, last_name FROM owner';
+    pool.query(queryText)
+        .then((result) => {
+            res.send(result.rows);
+        })
+        .catch((error) => {
+            res.sendStatus(500);
+        })
+}); //end get
 module.exports = router;

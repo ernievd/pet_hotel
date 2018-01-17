@@ -5,7 +5,7 @@ function readySetGo() {
     // Get pets on load
     getPets();
     // Event Listeners
-
+    formListeners();
     $('.pet-list').on('click', '.edit-pet', editPets);
     $('.pet-list').on('click', '.cancelButton', getPets);
     $('#addNewOwnerBtn').on('click', registerNewOwner);
@@ -13,11 +13,23 @@ function readySetGo() {
     $('table').on('click', '.deleteButton', deletePets);
     $('table').on('click', '.check-in-out', checkInOut);
     $('.pet-list').on('click', '.confirmButton', confirmEdit);
-
-
-
 } // End readySetGo function
 
+function formListeners(){
+    $('.register').hide();
+    $('#showRegisterOwner').on('click', function(){
+        $('.register-owner').show();
+    });
+    $('#exitRegisterOwner').on('click', function(){
+        $('.register-owner').hide();
+    });
+    $('#showRegisterPet').on('click', function(){
+        $('.register-pet').show();
+    });
+    $('#exitRegisterPet').on('click', function(){
+        $('.register-pet').hide();
+    });
+}
 
 function getPets() {
     $.ajax({

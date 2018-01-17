@@ -108,7 +108,6 @@ table {
 
 th, td {
     padding: 15px;
-    margin: 0;
 }
 
 .btn-td {
@@ -119,4 +118,17 @@ th, td {
     background-color: rgb(238, 238, 238);
     font-size: 12pt;
     color: #34677a;
+}
+
+.btn-td > button:hover {
+    color: #ae594a;
+}
+
+input {
+    border: 0;
+    outline: 0;
+    font-size: 12pt;
+    color: #34677a;
+    padding: 2px;
+    border: 1px solid #e8d272;
 }

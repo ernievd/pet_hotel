@@ -35,8 +35,9 @@ header > div > button:hover {
 }
 
 
-h1 {
-    font-size: 28pt;
+header > h1 {
+    font-size: 40pt;
+    font-family: 'Macondo', cursive;
 }
 
 .register {

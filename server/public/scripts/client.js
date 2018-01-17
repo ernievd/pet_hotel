@@ -49,10 +49,10 @@ function displayPets(pets) {
         <td class="petName">${pet.name}</td>
         <td class="petBreed">${pet.breed}</td>
         <td class ="petColor">${pet.color}</td>
+        <td class="btn-td"><button class="edit-pet"><i class="fas fa-edit"></i></button></td>
         <td class="checkedInOrOut">${checkPetStatus(pet.is_checked_in)}</td>
-        <td class="btn-td"><button class="edit-pet">Edit</button></td>
-        <td class="btn-td"><button class="deleteButton"><i class="far fa-trash-alt"></i></button></td>
         <td class="btn-td"><button class="check-in-out">${buttonCheckIn(pet.is_checked_in)}</button></td>
+        <td class="btn-td"><button class="deleteButton"><i class="far fa-trash-alt"></i></button></td>
         `);
         $('.pet-list').append($row);
         $row.data(pet);
@@ -148,6 +148,7 @@ function registerNewOwner() {
 function registerNewPet() {
     console.log("In registerNewPet");
  ///////***********************
+ 
     const ownerId = $(this).closest('.ownerList').data('id');
 
     let newPet = {
@@ -173,15 +174,47 @@ function registerNewPet() {
 function checkInOut() {
     let id = $(this).parents('tr').data('id');
     let boolean = $(this).parents('tr').data('is_checked_in');
+    console.log('id, ', id, 'boolean, ', boolean);
     if (boolean == false) {
+        visitCheckInPost(id);
         boolean = true;
     } else if (boolean == true){
+        visitCheckOutPut(id);
         boolean = false;
     }
     $.ajax({
         method:'PUT',
         url: `/pets/${id}/${boolean}`,
         success: getPets
+    })
+}
+
+function visitCheckOutPut(id){
+    $.ajax({
+        method: 'PUT',
+        url: `/visits/${id}`,
+        success: function (response) {
+            getVisitId();
+        }
+    })
+}
+function visitCheckInPost(id){
+    $.ajax({
+        method: 'POST',
+        url: `/visits/${id}`,
+        success: function (response) {
+            getVisitId();
+        }
+    })
+}
+
+function getVisitId() {
+    $.ajax({
+        method: 'GET',
+        url: '/visits',
+        success: function (response) {
+            // console.log('visits', response);
+        }
     })
 }
     //converts true or false boolean to useful string

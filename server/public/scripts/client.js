@@ -128,6 +128,7 @@ function getOwners() {
 
 
 function registerNewOwner() {
+    $('.register-owner').hide();
     let newOwner = {
         firstName: $('#OwnerFirstNameInput').val(),
         lastName: $('#OwnerLastNameInput').val(),
@@ -150,6 +151,7 @@ function registerNewOwner() {
 } // End registerNewOwner
 
 function registerNewPet() {
+    $('.register-pet').hide();
     console.log("In registerNewPet");
  ///////***********************
     const ownerId = $(this).siblings('select').val();

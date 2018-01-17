@@ -152,7 +152,7 @@ function registerNewOwner() {
 function registerNewPet() {
     console.log("In registerNewPet");
  ///////***********************
-    const ownerId = $(this).siblings('select').val();
+    const ownerId = $(this).parents('.register-pet').children('select').val();
 
     let newPet = {
         name: $('#petNameInput').val(),
@@ -169,7 +169,8 @@ function registerNewPet() {
 
             //Clear input fields
             $('.register-pet input[type="text"]').val('');
-            getOwners();
+            //getOwners();
+            getPets();
         },
         error: function(response) {
             alert('Fill out all input fields.');

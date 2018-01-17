@@ -79,7 +79,7 @@ function confirmEdit(){
     let color = $('#pet-color').val();
     $.ajax({
         method: 'PUT',
-        url: '/pets/' + pet,
+        url: `/pets/${pet}`,
         data: {
             name: name,
             breed: breed,

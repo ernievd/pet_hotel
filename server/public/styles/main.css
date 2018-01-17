@@ -120,3 +120,7 @@ th, td {
     font-size: 12pt;
     color: #34677a;
 }
+
+.btn-td > button:hover {
+    color: #ae594a;
+}

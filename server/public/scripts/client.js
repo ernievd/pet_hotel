@@ -13,7 +13,7 @@ function readySetGo() {
     $('table').on('click', '.deleteButton', deletePets);
     $('table').on('click', '.check-in-out', checkInOut);
     $('.pet-list').on('click', '.confirmButton', confirmEdit);
-
+    
 
 
 } // End readySetGo function
@@ -136,6 +136,7 @@ function registerNewOwner() {
 function registerNewPet() {
     console.log("In registerNewPet");
  ///////***********************
+ 
     const ownerId = $(this).closest('.ownerList').data('id');
 
     let newPet = {
@@ -161,15 +162,47 @@ function registerNewPet() {
 function checkInOut() {
     let id = $(this).parents('tr').data('id');
     let boolean = $(this).parents('tr').data('is_checked_in');
+    console.log('id, ', id, 'boolean, ', boolean);
     if (boolean == false) {
+        visitCheckInPost(id);
         boolean = true;
     } else if (boolean == true){
+        visitCheckOutPut(id);
         boolean = false;
     }
     $.ajax({
         method:'PUT',
         url: `/pets/${id}/${boolean}`,
         success: getPets
+    })
+}
+
+function visitCheckOutPut(id){
+    $.ajax({
+        method: 'PUT',
+        url: `/visits/${id}`,
+        success: function (response) {
+            getVisitId();
+        }
+    })
+}
+function visitCheckInPost(id){
+    $.ajax({
+        method: 'POST',
+        url: `/visits/${id}`,
+        success: function (response) {
+            getVisitId();
+        }
+    })
+}
+
+function getVisitId() {
+    $.ajax({
+        method: 'GET',
+        url: '/visits',
+        success: function (response) {
+            // console.log('visits', response);
+        }
     })
 }
     //converts true or false boolean to useful string

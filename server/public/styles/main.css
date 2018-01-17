@@ -23,16 +23,23 @@ header {
     border-bottom: 4px solid #ae594a;
 }
 
-header > div > button {
+header > div > button, a {
     font-size: 14pt;
     background-color: #618795;
     color: #e8d272;
+}
+
+a {
+    text-decoration: none;
 }
 
 header > div > button:hover {
     color: rgb(238, 238, 238);
 }
 
+a:hover {
+    color: rgb(238, 238, 238);
+}
 
 header > h1 {
     font-size: 40pt;
@@ -104,6 +111,7 @@ table {
     border-collapse: collapse;
     color: #34677a;
     font-size: 12pt;
+    margin-bottom: 50px;
 }
 
 th, td {
@@ -131,4 +139,18 @@ input {
     color: #34677a;
     padding: 2px;
     border: 1px solid #e8d272;
+}
+
+#petOwnerDropDown {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    outline: 0;
+    box-shadow: none;
+    border: 0 !important;
+    width: 200px;
+    height: 60px;
+    font-size: 10pt;
+    padding-left: 5px;
+    text-align: center;
 }

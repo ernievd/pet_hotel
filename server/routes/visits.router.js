@@ -19,7 +19,8 @@ router.post('/:id', (req, res)=>{
 })
 router.get('/', (req, res)=>{
     let queryText = `
-    SELECT * FROM visit;
+    SELECT pet.name, visit.check_in_date, visit.check_out_date FROM visit
+    JOIN pet ON visit.pet_id = pet.id;    
     `;
     pool.query(queryText)
         .then((result)=>{

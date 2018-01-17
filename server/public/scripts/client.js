@@ -128,6 +128,7 @@ function getOwners() {
 
 
 function registerNewOwner() {
+    $('.register-owner').hide();
     let newOwner = {
         firstName: $('#OwnerFirstNameInput').val(),
         lastName: $('#OwnerLastNameInput').val(),
@@ -150,6 +151,7 @@ function registerNewOwner() {
 } // End registerNewOwner
 
 function registerNewPet() {
+    $('.register-pet').hide();
     console.log("In registerNewPet");
  ///////***********************
     const ownerId = $(this).parents('.register-pet').children('select').val();
@@ -201,7 +203,6 @@ function visitCheckOutPut(id){
         method: 'PUT',
         url: `/visits/${id}`,
         success: function (response) {
-            getVisitId();
         }
     })
 }
@@ -210,20 +211,10 @@ function visitCheckInPost(id){
         method: 'POST',
         url: `/visits/${id}`,
         success: function (response) {
-            getVisitId();
         }
     })
 }
 
-function getVisitId() {
-    $.ajax({
-        method: 'GET',
-        url: '/visits',
-        success: function (response) {
-            // console.log('visits', response);
-        }
-    })
-}
     //converts true or false boolean to useful string
 
 function checkPetStatus(status) {

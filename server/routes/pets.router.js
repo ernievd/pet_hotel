@@ -7,7 +7,8 @@ const pool = require('../modules/pool');
 router.get('/', (req, res) => {
     const queryText = `SELECT pet.id, pet.name, pet.color, pet.breed, pet.is_checked_in, owner.first_name, owner.last_name FROM pet
     JOIN owner_pet ON owner_pet.pet_id = pet.id
-    JOIN owner ON owner_pet.owner_id = owner.id`;
+    JOIN owner ON owner_pet.owner_id = owner.id
+    ORDER BY is_checked_in DESC`;
     pool.query(queryText)
         .then((result) => {
             res.send(result.rows);
@@ -106,7 +107,7 @@ router.delete('/:id', (req, res)=>{
 
 //GET all owners from DB
 router.get('/owners', (req, res) => {
-    const queryText = 'SELECT first_name, last_name, id FROM owner';
+    const queryText = 'SELECT first_name, last_name, id FROM owner ORDER BY last_name';
     pool.query(queryText)
         .then((result) => {
             res.send(result.rows);

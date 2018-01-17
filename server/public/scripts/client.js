@@ -84,9 +84,11 @@ function editPets() {
     $(this).parents().siblings('.petName').html(`<input type="text" id="pet-name" value="${name}">`);
     $(this).parents().siblings('.petBreed').html(`<input type="text" id="pet-breed" value="${breed}">`);
     $(this).parents().siblings('.petColor').html(`<input type="text" id="pet-color" value="${color}">`);
+    $('.edit-pet').html(``);
     $(this).replaceWith(`
         <button class="confirmButton">Confirm</button>
         <button class ="cancelButton">Cancel</button>`);
+
 }
 
 function confirmEdit(){

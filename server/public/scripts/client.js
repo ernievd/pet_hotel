@@ -1,7 +1,6 @@
 $(document).ready(readySetGo);
 
 function readySetGo() {
-    console.log('readySetGo working');
     // Get pets on load
     getPets();
     // Event Listeners
@@ -61,12 +60,6 @@ function displayPets(pets) {
     getOwners()
 } //end displayPets
 
-function addPets() {
-} // End addPets
-
-function updatePets() {
-} // End updatePets
-
 function deletePets() {
     let id = $(this).parents('tr').data('id');
     $.ajax({
@@ -81,9 +74,6 @@ function editPets() {
     let breed = $(this).parents().siblings('.petBreed').text();
     let color = $(this).parents().siblings('.petColor').text();
     let id = $(this).parents().siblings('.petColor').data();
-    console.log('id ', id);
-    
-
     $(this).parents().siblings('.petName').html(`<input type="text" id="pet-name" value="${name}">`);
     $(this).parents().siblings('.petBreed').html(`<input type="text" id="pet-breed" value="${breed}">`);
     $(this).parents().siblings('.petColor').html(`<input type="text" id="pet-color" value="${color}">`);
@@ -91,7 +81,6 @@ function editPets() {
     $(this).replaceWith(`
         <button class="confirmButton">Confirm</button>
         <button class ="cancelButton">Cancel</button>`);
-
 }
 
 function confirmEdit(){
@@ -114,13 +103,11 @@ function confirmEdit(){
     });
 }
 
-
 function getOwners() {
     $.ajax({
         method: 'GET',
         url: '/pets/owners',
         success: function(response) {
-            console.log('response from getTask', response);
             $('#petOwnerDropDown').empty();
             $('#petOwnerDropDown').append(`<option>Choose pets owner</option>`);
             for (let i = 0; i < response.length; i++) {
@@ -131,20 +118,17 @@ function getOwners() {
     }); //end ajax get
 } // End getPets
 
-
 function registerNewOwner() {
     $('.register-owner').hide();
     let newOwner = {
         firstName: $('#OwnerFirstNameInput').val(),
         lastName: $('#OwnerLastNameInput').val(),
     };
-
     $.ajax({
         method: 'POST',
         url: '/pets',
         data: newOwner,
         success: function(response) {
-            console.log('response:', response);
             //Clear input fields
             $('.register-owner input[type="text"]').val('');
             getOwners();
@@ -157,10 +141,7 @@ function registerNewOwner() {
 
 function registerNewPet() {
     $('.register-pet').hide();
-    console.log("In registerNewPet");
- ///////***********************
     const ownerId = $(this).parents('.register-pet').children('select').val();
-
     let newPet = {
         name: $('#petNameInput').val(),
         breed: $('#petBreedInput').val(),
@@ -172,8 +153,6 @@ function registerNewPet() {
         url: '/pets/newPet',
         data: newPet,
         success: function(response) {
-            console.log('response:', response);
-
             //Clear input fields
             $('.register-pet input[type="text"]').val('');
             //getOwners();
@@ -188,7 +167,6 @@ function registerNewPet() {
 function checkInOut() {
     let id = $(this).parents('tr').data('id');
     let boolean = $(this).parents('tr').data('is_checked_in');
-    console.log('id, ', id, 'boolean, ', boolean);
     if (boolean == false) {
         visitCheckInPost(id);
         boolean = true;
@@ -219,7 +197,6 @@ function visitCheckInPost(id){
         }
     })
 }
-
     //converts true or false boolean to useful string
 
 function checkPetStatus(status) {

@@ -49,7 +49,7 @@ function displayPets(pets) {
         <td class="petName">${pet.name}</td>
         <td class="petBreed">${pet.breed}</td>
         <td class ="petColor">${pet.color}</td>
-        <td><button class="edit-pet"><i class="fas fa-edit"></i></button></td>
+        <td class="btn-td"><button class="edit-pet"><i class="fas fa-edit"></i></button></td>
         <td class="checkedInOrOut">${checkPetStatus(pet.is_checked_in)}</td>
         <td class="btn-td"><button class="check-in-out">${buttonCheckIn(pet.is_checked_in)}</button></td>
         <td class="btn-td"><button class="deleteButton"><i class="far fa-trash-alt"></i></button></td>

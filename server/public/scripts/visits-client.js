@@ -24,7 +24,7 @@ function displayPetVisits(pets) {
         $row.append(`
         <td class="petName">${pet.name}</td>
         <td class="check-out-date">${splitDate(pet.check_in_date)}</td>
-        <td class="check-in-date">${splitDate(pet.check_out_date)}</td>
+        <td class="check-in-date">${splitDate(checkDate(pet.check_out_date))}</td>
         `);
         $('.pet-list').append($row);
         $row.data(pet);
@@ -34,5 +34,12 @@ function displayPetVisits(pets) {
 
 function splitDate(date) {
     date = date.split('T')[0];
+    return date;
+}
+
+function checkDate(date) {
+    if (date == null){
+        return '';
+    }
     return date;
 }

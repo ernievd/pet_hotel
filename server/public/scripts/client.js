@@ -61,12 +61,6 @@ function displayPets(pets) {
     getOwners()
 } //end displayPets
 
-function addPets() {
-} // End addPets
-
-function updatePets() {
-} // End updatePets
-
 function deletePets() {
     let id = $(this).parents('tr').data('id');
     $.ajax({

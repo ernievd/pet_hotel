@@ -200,7 +200,6 @@ function visitCheckOutPut(id){
         method: 'PUT',
         url: `/visits/${id}`,
         success: function (response) {
-            getVisitId();
         }
     })
 }
@@ -209,20 +208,10 @@ function visitCheckInPost(id){
         method: 'POST',
         url: `/visits/${id}`,
         success: function (response) {
-            getVisitId();
         }
     })
 }
 
-function getVisitId() {
-    $.ajax({
-        method: 'GET',
-        url: '/visits',
-        success: function (response) {
-            // console.log('visits', response);
-        }
-    })
-}
     //converts true or false boolean to useful string
 
 function checkPetStatus(status) {

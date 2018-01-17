@@ -2,7 +2,6 @@ html, body {
     margin: 0;
     background-color: #aae2f0;
     font-family: sans-serif;
-    color: #363636;
     font-family: 'Poppins', sans-serif;
 }
 
@@ -35,8 +34,9 @@ header > div > button:hover {
 }
 
 
-h1 {
-    font-size: 28pt;
+header > h1 {
+    font-size: 40pt;
+    font-family: 'Macondo', cursive;
 }
 
 .register {
@@ -63,7 +63,7 @@ h1 {
 }
 
 .register > input {
-    border: 0; 
+    border: 0;
     outline: 0;
     margin: 10px;
     padding: 10px;
@@ -90,14 +90,33 @@ button {
     outline: 0;
 }
 
+thead {
+    background-color: #e8d272;
+    margin: 0;
+}
 
 
 table {
     margin: 0 auto;
     margin-top: 75px;
+    border: 4px solid #ae594a;
     background-color: rgb(238, 238, 238);
+    border-collapse: collapse;
+    color: #34677a;
+    font-size: 12pt;
 }
 
 th, td {
-    padding: 20px;
+    padding: 15px;
+    margin: 0;
+}
+
+.btn-td {
+    padding: 5px;
+}
+
+.btn-td > button {
+    background-color: rgb(238, 238, 238);
+    font-size: 12pt;
+    color: #34677a;
 }

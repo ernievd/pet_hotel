@@ -128,6 +128,11 @@ th, td {
     color: #34677a;
 }
 
+.check-in-out {
+    border: 1px solid #ae594a70;
+    border-radius: 5px;
+}
+
 .btn-td > button:hover {
     color: #ae594a;
 }
@@ -154,3 +159,4 @@ input {
     padding-left: 5px;
     text-align: center;
 }
+

@@ -4,13 +4,14 @@ function readySetGo() {
     console.log('readySetGo working');
     // Get pets on load
     getPets();
+    // Event Listeners
     $('.pet-list').on('click', '.edit-pet', editPets);
     $('.pet-list').on('click', '.cancelButton', getPets);
-    // Event Listeners
     $('#addNewOwnerBtn').on('click', registerNewOwner);
     $('#addNewPetBtn').on('click', registerNewPet);
     $('table').on('click', '.deleteButton', deletePets);
     $('table').on('click', '.check-in-out', checkInOut);
+    $('.pet-list').on('click', '.confirmButton', confirmEdit);
 } // End readySetGo function
 
 
@@ -59,25 +60,35 @@ function deletePets() {
 } // End deletePets
 
 function editPets() {
-    let pet = $(this).closest('tr').data('id');
-    
-    $(this).parents().siblings('.petName').html(`<input type="text" value="hello">`);
-    $(this).parents().siblings('.petBreed').html(`<input type="text" value="hello">`);
-    $(this).parents().siblings('.petColor').html(`<input type="text" value="hello">`);
+    let name = $(this).parents().siblings('.petName').text();
+    let breed = $(this).parents().siblings('.petBreed').text();
+    let color = $(this).parents().siblings('.petColor').text();
+
+    $(this).parents().siblings('.petName').html(`<input type="text" id="pet-name" value="${name}">`);
+    $(this).parents().siblings('.petBreed').html(`<input type="text" id="pet-breed" value="${breed}">`);
+    $(this).parents().siblings('.petColor').html(`<input type="text" id="pet-color" value="${color}">`);
     $(this).replaceWith(`
         <button class="confirmButton">Confirm</button>
         <button class ="cancelButton">Cancel</button>`);
-        console.log($(this));
-        
-    
-    // $.ajax({
-    //     method: 'PUT',
-    //     url: '/pets/' + pet,
-    //     data: ,
-    //     success: function(){
-    //         getPets();
-    //     }
-    // });
+}
+
+function confirmEdit(){
+    let pet = $(this).closest('tr').data('id');
+    let name = $('#pet-name').val();
+    let breed = $('#pet-breed').val();
+    let color = $('#pet-color').val();
+    $.ajax({
+        method: 'PUT',
+        url: '/pets/' + pet,
+        data: {
+            name: name,
+            breed: breed,
+            color: color
+        },
+        success: function(){
+            getPets();
+        }
+    });
 }
 
 function registerNewOwner() {
